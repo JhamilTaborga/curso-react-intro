@@ -1,12 +1,15 @@
+import './TodoItem.css';
 
-function TodoItem() {
+function TodoItem(props) {
     return (
-      <li>
-        <span>V</span>
-        <p>Llorar con la Llorona</p>
-        <span>X</span>
+      <li className='todo-item'>
+        <button className='button-check' ></button>
+        <p className='TodoItem-p TodoItem-p--complete'>
+          {props.text}
+        </p>
+        <button className='button-delete'></button>
       </li>
     );
 };
-  
+
 export { TodoItem };
