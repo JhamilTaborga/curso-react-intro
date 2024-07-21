@@ -1,4 +1,4 @@
-.todo-item {
+.TodoItem {
     /* width: 80%;
     min-height: 50px;
     display: flex;
@@ -17,10 +17,17 @@
     margin-top: 24px;
     box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
 }
-.todo-item p {
-    width: 70%;
+.TodoItem-p {
+    margin: 24px 0 24px 24px;
+    width: calc(100% - 120px);
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
 }
-.button-check {
+.TodoItem-p--complete {
+    text-decoration: line-through;
+}
+.Button-check {
     background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Eo_circle_light-blue_checkmark.svg/512px-Eo_circle_light-blue_checkmark.svg.png?20200417144731') no-repeat;
     background-size: 90%;
     background-position: center center;
@@ -29,7 +36,7 @@
     border: none;
     cursor: pointer;
 }
-.button-delete {
+.Button-delete {
     background: url('https://pngfre.com/wp-content/uploads/X-20.png') no-repeat;
     background-size: 100%;
     background-position: center center;

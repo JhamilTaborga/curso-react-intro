@@ -2,9 +2,10 @@ import './TodoSearch.css';
 
 function TodoSearch() {
     return (
-      <div className="todo-search">
-      <input  placeholder='cortar cebolla' />
-      </div>
+      <input  
+        placeholder='Cortar cebolla'
+        className="TodoSearch"
+      />
     );
 }
 
