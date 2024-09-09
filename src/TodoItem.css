@@ -13,7 +13,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 24px;
     box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
 }
@@ -36,6 +36,9 @@
     border: none;
     cursor: pointer;
 }
+.Button-check:hover {
+    transform: scale(1.1);
+}
 .Button-delete {
     background: url('https://pngfre.com/wp-content/uploads/X-20.png') no-repeat;
     background-size: 100%;
@@ -46,4 +49,7 @@
     cursor: pointer;
     opacity: 50%;
     /* margin-bottom: 63px; */
+}
+.Button-delete:hover {
+    transform: scale(1.15);
 }
