@@ -7,9 +7,9 @@ import { CreateTodoButton } from './CreateTodoButton';
 
 const defaultTodos= [
   { text: 'Cortar cebolla', completed:false },
-  { text: 'Tomar el curso de Intro a React.js', completed:true },
+  { text: 'LALALALA', completed:true },
   { text: 'Llorar con la llorona', completed:false },
-  { text: 'Aprender inglés', completed:false },
+  { text: 'Tomar el curso de React.js', completed:false },
   { text: 'Usar estados derivados', completed:true },
 
 ];
@@ -22,6 +22,13 @@ function App() {
     todos => !!todos.completed
   ).length;
   const totalTodos = todos.length;
+
+  const serchedTodos = todos.filter(
+    (todo) => {
+    const todoText = todo.text.toLowerCase();
+    const searchText = searchValue.toLowerCase();
+    return todoText.includes(searchText);
+  });
 
   console.log('Los usuarios buscan TODOs de ' + searchValue);
 
@@ -36,7 +43,7 @@ function App() {
       />
 
       <TodoList>
-        {defaultTodos.map(todo => (
+        {serchedTodos.map(todo => (
           <TodoItem
           key={todo.text} 
           text={todo.text} 
