@@ -30,8 +30,15 @@ function App() {
     return todoText.includes(searchText);
   });
 
-  console.log('Los usuarios buscan TODOs de ' + searchValue);
-
+  const completeTodo = (text) => {
+    const newTodos = [...todos];
+    const todosIndex = newTodos.findIndex(
+      (todo) => todo.text == text
+    );
+    newTodos[todosIndex].completed = true;
+    setTodos(newTodos);
+  };
+  
   return (
     <>
       <TodoCounter 
@@ -48,6 +55,7 @@ function App() {
           key={todo.text} 
           text={todo.text} 
           completed={todo.completed}
+          onComplete={() => completeTodo(todo.text)}
           />
         ))}
       </TodoList>
