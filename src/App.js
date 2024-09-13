@@ -11,7 +11,6 @@ const defaultTodos= [
   { text: 'Llorar con la llorona', completed:false },
   { text: 'Tomar el curso de React.js', completed:false },
   { text: 'Usar estados derivados', completed:true },
-
 ];
 
 function App() {

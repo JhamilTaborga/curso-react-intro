@@ -27,33 +27,8 @@
 .TodoItem-p--complete {
     text-decoration: line-through;
 }
-.Icon {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 48px;
-    width: 48px;
-}
-.Icon-check {
-    position: absolute;
-    left: 12px;
-}
-.Icon-check--active {
-    color: #4acf50;
-}
 
-.Icon-delete {
-    position: absolute;
-    top: -24px;
-    right: 0;
-}
-.Icon-delete:hover {
-    color: red;
-}
-
-
-.Button-check {
+/* .Button-check {
     background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Eo_circle_light-blue_checkmark.svg/512px-Eo_circle_light-blue_checkmark.svg.png?20200417144731') no-repeat;
     background-size: 90%;
     background-position: center center;
@@ -74,8 +49,7 @@
     border: none;
     cursor: pointer;
     opacity: 50%;
-    /* margin-bottom: 63px; */
 }
 .Button-delete:hover {
     transform: scale(1.15);
-}
+} */
