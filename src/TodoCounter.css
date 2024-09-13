@@ -8,3 +8,12 @@
 .TodoCounter span {
     font-weight: bold;
 }
+
+.TodoCounterCongratulate {
+    font-size: 24px;
+    text-align: center;
+    margin: -15px 0 0;
+    
+    padding: 0 48px 48px;
+    font-weight: normal;
+}
