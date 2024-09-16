@@ -1,9 +1,6 @@
 import React from 'react';
-import { TodoCounter } from './TodoCounter';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-import { TodoItem } from './TodoItem';
-import { CreateTodoButton } from './CreateTodoButton';
+import { AppUI } from './AppUI';
+import { useLocalStorage } from './useLocalStorage';
 
 // const defaultTodos= [
 //   { text: 'Cortar cebolla', completed:false },
@@ -19,29 +16,6 @@ import { CreateTodoButton } from './CreateTodoButton';
 
 // Explicación Custom Hooks: La nomenclatura que nos pide React.js es que siempre empecemos por "use" para que sepamos qué función es una función normal y cuales son "Custom Hooks". Ejemplo: "useLocalStorage". Podemos crear nuestros propios customHooks y deben iniciar con "use".
 // Para que podamos trabajar con cualquier tipo de contenido en el "localStorage" usamos "item", porque todo para localStorage es un "item".
-
-function useLocalStorage (itemName, initialValue) {
-
-  const localStorageItem = localStorage.getItem(itemName);
-  
-  let parsedItem;
-
-  if (!localStorageItem) {
-    localStorage.setItem(itemName, JSON.stringify(initialValue));
-    parsedItem = initialValue;
-  } else {
-    parsedItem = JSON.parse(localStorageItem);
-  }
-
-  const [item, setItem] = React.useState(parsedItem);
-
-  const saveItem = (newItem) => {
-    localStorage.setItem(itemName, JSON.stringify(newItem))
-    setItem(newItem);
-  };
-
-  return [item, saveItem];
-}
 
 function App() {
 
@@ -63,7 +37,7 @@ function App() {
   const completeTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      (todo) => todo.text == text
+      (todo) => todo.text === text
     );
     newTodos[todoIndex].completed = true;
     saveTodos(newTodos);
@@ -72,36 +46,22 @@ function App() {
   const deleteTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
-      (todo) => todo.text == text
+      (todo) => todo.text === text
     );
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
   
   return (
-    <>
-      <TodoCounter 
-        completed={completedTodos} 
-        total={totalTodos}/>
-      <TodoSearch 
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-
-      <TodoList>
-        {serchedTodos.map(todo => (
-          <TodoItem
-          key={todo.text} 
-          text={todo.text} 
-          completed={todo.completed}
-          onComplete={() => completeTodo(todo.text)}
-          onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-      
-      <CreateTodoButton />
-    </>
+   <AppUI 
+      completedTodos={completedTodos}
+      totalTodos={totalTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      serchedTodos={serchedTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+   />
   );
 }
 

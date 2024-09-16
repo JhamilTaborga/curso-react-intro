@@ -1,13 +1,13 @@
 import './TodoCounter.css';
 
 function TodoCounter({ total, completed }) {
-  if (total == 0) {
+  if (total === 0) {
     return ( 
       <h1 className='TodoCounter'>
         Aún no tienes TODOS Agregados
       </h1>
     );
-  } else if (total == completed) {
+  } else if (total === completed) {
     return (
       <>
         <h1 className='TodoCounter'>
