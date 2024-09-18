@@ -2,6 +2,7 @@ import React from 'react';
 import { AppUI } from './AppUI';
 import { useLocalStorage } from './useLocalStorage';
 
+// localStorage.removeItem('TODOS_V1');
 // const defaultTodos= [
 //   { text: 'Cortar cebolla', completed:false },
 //   { text: 'LALALALA', completed:true },
@@ -11,15 +12,20 @@ import { useLocalStorage } from './useLocalStorage';
 // ];
 
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
-// localStorage.removeItem('TODOS_V1');
 
 
 // Explicación Custom Hooks: La nomenclatura que nos pide React.js es que siempre empecemos por "use" para que sepamos qué función es una función normal y cuales son "Custom Hooks". Ejemplo: "useLocalStorage". Podemos crear nuestros propios customHooks y deben iniciar con "use".
 // Para que podamos trabajar con cualquier tipo de contenido en el "localStorage" usamos "item", porque todo para localStorage es un "item".
 
 function App() {
-
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  // Cuando queremos retornar más de dos elementos de un "CustomeHook" es mucho más recomendable usar objetos en lugar de arrays, así no nos preocupamos por la posición.
+  const {
+    // Renombrar elementos: Podemos renombrar elementos con la sintaxis ":", con los dos puntos podemos renombrar elementos.
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(
@@ -54,6 +60,8 @@ function App() {
   
   return (
    <AppUI 
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchValue={searchValue}
