@@ -6,29 +6,24 @@ import { TodosLoading } from '../TodosLoading';
 import { TodosError } from '../TodosError';
 import { EmptyTodos } from '../EmptyTodos';
 import { CreateTodoButton } from '../CreateTodoButton';
+import { TodoContext } from '../TodoContext';
 
-function AppUI ({
-  loading,
-  error,
-  completedTodos,
-  totalTodos,
-  searchValue,
-  setSearchValue,
-  serchedTodos,
-  completeTodo,
-  deleteTodo,
-}) {
-    return (
-        <>
-        <TodoCounter 
-          completed={completedTodos} 
-          total={totalTodos}/>
-        <TodoSearch 
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
+function AppUI () {
+  return (
+    <>
+      <TodoCounter />
+      <TodoSearch />
   
-        <TodoList>
+      {/* Todos los ".Consumer" siguen un patron de render llamadas las Rendrer Props, así como nosotros podemos crear componentes a los que podemos pedirle que llame a sus "props.children" internamente este componente de "React.Consumer" también llama a su props.children pero lo hace de una forma distinta, lo hace utilizando las "render functions", esto significa que no espera que le enviemos un compente así tal cual, lo que espera es una función (function). Por esto hacemos lo siguiente:*/}
+      <TodoContext.Consumer>
+        {({
+          loading,
+          error,
+          serchedTodos,
+          completeTodo,
+          deleteTodo,
+        }) => (
+          <TodoList>
           {loading && (
             <>
             <TodosLoading />
@@ -49,10 +44,12 @@ function AppUI ({
             />
           ))}
         </TodoList>
+        )}
+      </TodoContext.Consumer>
         
-        <CreateTodoButton />
-      </>
-    );
+      <CreateTodoButton />
+    </>
+  );
 }
 
 export { AppUI };
