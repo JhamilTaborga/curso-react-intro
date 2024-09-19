@@ -7,48 +7,55 @@ import { TodosLoading } from '../TodosLoading';
 import { TodosError } from '../TodosError';
 import { EmptyTodos } from '../EmptyTodos';
 import { CreateTodoButton } from '../CreateTodoButton';
+// import { Modal } from '../Modal';
 import { TodoContext } from '../TodoContext';
+import { Modal } from '../Modal';
 
 function AppUI () {
+  const {
+    loading,
+    error,
+    serchedTodos,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal,
+  } = React.useContext(TodoContext);
   return (
     <>
       <TodoCounter />
       <TodoSearch />
   
-      {/* Todos los ".Consumer" siguen un patron de render llamadas las Rendrer Props, así como nosotros podemos crear componentes a los que podemos pedirle que llame a sus "props.children" internamente este componente de "React.Consumer" también llama a su props.children pero lo hace de una forma distinta, lo hace utilizando las "render functions", esto significa que no espera que le enviemos un compente así tal cual, lo que espera es una función (function). Por esto hacemos lo siguiente:*/}
-      <TodoContext.Consumer>
-        {({
-          loading,
-          error,
-          serchedTodos,
-          completeTodo,
-          deleteTodo,
-        }) => (
-          <TodoList>
-          {loading && (
-            <>
-            <TodosLoading />
-            <TodosLoading />
-            <TodosLoading />
-            </>
-          )}
-          {error && <TodosError />}
-          {(!loading && serchedTodos.length == 0) && <EmptyTodos />}
-
-          {serchedTodos.map(todo => (
-            <TodoItem
-            key={todo.text} 
-            text={todo.text} 
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-            />
-          ))}
-        </TodoList>
+      <TodoList>
+        {loading && (
+        <>
+          <TodosLoading />
+          <TodosLoading />
+          <TodosLoading />
+        </>
         )}
-      </TodoContext.Consumer>
-        
+        {error && <TodosError />}
+        {(!loading && serchedTodos.length === 0) && <EmptyTodos />}
+
+        {serchedTodos.map(todo => (
+          <TodoItem
+          key={todo.text} 
+          text={todo.text} 
+          completed={todo.completed}
+          onComplete={() => completeTodo(todo.text)}
+          onDelete={() => deleteTodo(todo.text)}
+          />
+        ))}
+      </TodoList>
+
       <CreateTodoButton />
+      
+      {openModal && (
+        <Modal>
+          La función de agregar TODO
+        </Modal>
+      )}  
+          
     </>
   );
 }
